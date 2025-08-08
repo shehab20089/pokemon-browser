@@ -2,11 +2,11 @@ import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationLink,
   PaginationEllipsis,
 } from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
   currentPage: number;
@@ -70,42 +70,50 @@ export default function NumberedPagination({
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (!prevDisabled) onPageChange(currentPage - 1);
-              }}
-              className={prevDisabled ? "pointer-events-none opacity-50" : ""}
-            />
+            <Button
+              variant="outline"
+              size="lg"
+              disabled={prevDisabled}
+              onClick={() => onPageChange(currentPage - 1)}
+              aria-label="Go to previous page"
+              className="gap-1"
+            >
+              <ChevronLeftIcon /> Previous
+            </Button>
           </PaginationItem>
           {pageItems.map((item, idx) => (
             <PaginationItem key={`${item}-${idx}`}>
               {item === "ellipsis" ? (
                 <PaginationEllipsis />
               ) : (
-                <PaginationLink
-                  href="#"
-                  isActive={item === currentPage}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (item !== currentPage) onPageChange(item as number);
-                  }}
+                <Button
+                  variant={item === currentPage ? "default" : "outline"}
+                  size="icon"
+                  aria-current={item === currentPage ? "page" : undefined}
+                  onClick={() =>
+                    item !== currentPage && onPageChange(item as number)
+                  }
+                  className={cn(
+                    item === currentPage ? "" : "bg-background",
+                    "h-10 w-9"
+                  )}
                 >
                   {item}
-                </PaginationLink>
+                </Button>
               )}
             </PaginationItem>
           ))}
           <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                if (!nextDisabled) onPageChange(currentPage + 1);
-              }}
-              className={nextDisabled ? "pointer-events-none opacity-50" : ""}
-            />
+            <Button
+              variant="outline"
+              size="lg"
+              disabled={nextDisabled}
+              onClick={() => onPageChange(currentPage + 1)}
+              aria-label="Go to next page"
+              className="gap-1"
+            >
+              Next <ChevronRightIcon />
+            </Button>
           </PaginationItem>
         </PaginationContent>
       </Pagination>
