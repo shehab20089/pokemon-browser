@@ -20,12 +20,12 @@ export default function PokemonCard({ item }: PokemonCardProps) {
       to={`/pokemon/${id ?? item.name}`}
       className="group rounded-sm border bg-background/80 p-3 shadow-sm hover:shadow-md transition-shadow"
     >
-      <div className="rounded-md bg-muted aspect-square grid place-items-center overflow-hidden">
+      <div className="rounded-md bg-muted aspect-auto grid place-items-center overflow-hidden">
         {sprite ? (
           <img
             src={sprite}
             alt={item.name}
-            className="max-h-28 w-auto object-contain drop-shadow-sm transition-transform group-hover:scale-[1.02]"
+            className="w-auto h-48 object-contain drop-shadow-sm transition-transform group-hover:scale-[1.02]"
             loading="lazy"
             width={256}
             height={256}
