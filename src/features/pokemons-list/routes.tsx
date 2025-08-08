@@ -14,12 +14,12 @@ export const pokemonRoutes: RouteObject = {
     {
       index: true,
       element: <PokemonListPage />,
-      handle: { layoutClass: "bg-[#ebfbf1]" },
+      handle: { layoutClass: "bg-[#eef5ff]", textTitle: "page controls" },
     },
     {
       path: "scroll",
       element: <PokemonScrollListPage />,
-      handle: { layoutClass: "bg-[#eef5ff]" },
+      handle: { layoutClass: "bg-[#ebfbf1]", textTitle: "infinite scroll" },
     },
   ],
 };
