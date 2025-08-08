@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import useMediaQuery from "@/lib/use-media-query";
 
 type Props = {
   currentPage: number;
@@ -57,7 +58,8 @@ export default function NumberedPagination({
   totalCount,
   isFetching,
 }: Props) {
-  const pageItems = getPageItems(currentPage, totalPages);
+  const isSm = useMediaQuery("(max-width: 640px)");
+  const pageItems = getPageItems(currentPage, totalPages, isSm ? 3 : 5);
   const prevDisabled = currentPage <= 1;
   const nextDisabled = currentPage >= totalPages;
   const shownCount = Math.min(
@@ -68,11 +70,11 @@ export default function NumberedPagination({
   return (
     <div className="space-y-2 text-center">
       <Pagination>
-        <PaginationContent>
+        <PaginationContent className="flex flex-wrap justify-center gap-1 sm:gap-2">
           <PaginationItem>
             <Button
               variant="outline"
-              size="lg"
+              size={isSm ? "sm" : "lg"}
               disabled={prevDisabled}
               onClick={() => onPageChange(currentPage - 1)}
               aria-label="Go to previous page"
@@ -88,14 +90,14 @@ export default function NumberedPagination({
               ) : (
                 <Button
                   variant={item === currentPage ? "default" : "outline"}
-                  size="icon"
+                  size={isSm ? "default" : "icon"}
                   aria-current={item === currentPage ? "page" : undefined}
                   onClick={() =>
                     item !== currentPage && onPageChange(item as number)
                   }
                   className={cn(
                     item === currentPage ? "" : "bg-background",
-                    "h-10 w-9"
+                    "h-8 w-8 sm:h-10 sm:w-9"
                   )}
                 >
                   {item}
@@ -106,7 +108,7 @@ export default function NumberedPagination({
           <PaginationItem>
             <Button
               variant="outline"
-              size="lg"
+              size={isSm ? "sm" : "lg"}
               disabled={nextDisabled}
               onClick={() => onPageChange(currentPage + 1)}
               aria-label="Go to next page"
