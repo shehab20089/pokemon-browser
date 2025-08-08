@@ -4,6 +4,7 @@ import RootLayout from "../layouts/root-layout";
 
 // Feature routes
 import { pokemonRoutes } from "@/features/pokemons-list/routes";
+import { pokemonDetailsRoutes } from "@/features/pokemon-details/routes";
 import NotFound from "./not-found.tsx";
 
 export const routes: RouteObject[] = [
@@ -13,6 +14,7 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <Navigate to="pokemon" replace /> },
       pokemonRoutes,
+      pokemonDetailsRoutes,
       { path: "*", element: <NotFound /> },
     ],
   },
