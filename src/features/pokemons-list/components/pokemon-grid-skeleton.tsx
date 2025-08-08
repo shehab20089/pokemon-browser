@@ -10,12 +10,10 @@ export default function PokemonGridSkeleton({ count }: Props) {
           key={i}
           className="rounded-xl border bg-background/80 p-3 shadow-sm"
         >
-          <div className="rounded-md bg-muted/40 aspect-square grid place-items-center overflow-hidden">
-            <Skeleton className="h-28 w-28" />
-          </div>
+          <Skeleton className="h-[150px] w-full" />
           <div className="mt-3 space-y-2">
-            <Skeleton className="h-4 w-24 mx-auto" />
-            <Skeleton className="h-3 w-10 mx-auto" />
+            <Skeleton className="h-4 w-full " />
+            <Skeleton className="h-4 w-full " />
           </div>
         </div>
       ))}
