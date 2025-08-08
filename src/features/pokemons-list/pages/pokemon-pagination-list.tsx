@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import pokemonsListApi from "../api";
+import PokemonGrid from "../components/pokemon-grid";
+import PokemonGridSkeleton from "../components/pokemon-grid-skeleton";
 import { useGetPokemonList } from "../hooks/useGetPokemonList";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,7 +10,6 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
-import { Skeleton } from "@/components/ui/skeleton";
 
 const PAGE_SIZE = 20;
 
@@ -23,15 +22,7 @@ export default function PokemonListPage() {
     offset,
   });
 
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4">
-        {Array.from({ length: PAGE_SIZE }).map((_, i) => (
-          <Skeleton key={i} className="h-28" />
-        ))}
-      </div>
-    );
-  }
+  if (isLoading) return <PokemonGridSkeleton count={PAGE_SIZE} />;
 
   if (isError) {
     return (
@@ -46,32 +37,7 @@ export default function PokemonListPage() {
 
   return (
     <div className="p-4 space-y-4">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {data?.results.map((p) => {
-          const id = pokemonsListApi.extractPokemonIdFromUrl(p.url);
-          const sprite = id
-            ? pokemonsListApi.buildPokemonSpriteUrl(id)
-            : undefined;
-          return (
-            <Link
-              key={p.name}
-              to={`/pokemon/${id ?? p.name}`}
-              className="rounded-md border p-3 hover:bg-accent"
-            >
-              {sprite ? (
-                <img
-                  src={sprite}
-                  alt={p.name}
-                  className="w-20 h-20 object-contain mx-auto"
-                />
-              ) : (
-                <div className="w-20 h-20 mx-auto" />
-              )}
-              <div className="mt-2 text-center capitalize">{p.name}</div>
-            </Link>
-          );
-        })}
-      </div>
+      <PokemonGrid items={data?.results ?? []} />
 
       <Pagination>
         <PaginationContent>

@@ -1,4 +1,5 @@
 import axiosInstance from "@/lib/axios";
+export type { PokemonListItem, PokemonListResponse } from "./types";
 import type { PokemonListResponse } from "./types";
 
 const pokemonsListApi = {
