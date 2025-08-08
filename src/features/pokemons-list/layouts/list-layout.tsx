@@ -15,12 +15,12 @@ export default function ListLayout() {
     ?.textTitle;
   return (
     <div className={cn("min-h-dvh", layoutClass)}>
-      <div className="mx-auto max-w-5xl px-4 py-8 text-center space-y-3">
+      <div className="mx-auto max-w-5xl px-4 pt-8 text-center space-y-3">
         <h1 className="text-3xl font-bold flex items-center justify-center gap-2">
           <Zap
             className="inline-block text-orange-300
           "
-          />{" "}
+          />
           Pokédex
         </h1>
         <p className="text-muted-foreground">
