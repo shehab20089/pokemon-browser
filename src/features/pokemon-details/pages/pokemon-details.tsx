@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
-import { Skeleton } from "@/components/ui/skeleton";
+import PokemonDetailsSkeleton from "../components/details-skeleton";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Zap, Ruler, Weight, ArrowLeft } from "lucide-react";
@@ -33,13 +33,7 @@ export default function PokemonDetailsPage() {
     flying: "bg-sky-600 text-white",
   };
   if (isLoading) {
-    return (
-      <div className="p-6 space-y-4">
-        <Skeleton className="h-8 w-40" />
-        <Skeleton className="h-40 w-40" />
-        <Skeleton className="h-4 w-64" />
-      </div>
-    );
+    return <PokemonDetailsSkeleton />;
   }
 
   if (isError) {
