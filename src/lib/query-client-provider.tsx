@@ -19,7 +19,13 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: false,
+      // attempt to retry 3 times if the error is not a 404
+      retry: (failureCount, error) => {
+        if (error instanceof Error && error.message.includes("404")) {
+          return false;
+        }
+        return failureCount < 3;
+      },
       staleTime: 1000 * 60 * 5,
     },
   },
