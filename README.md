@@ -2,6 +2,20 @@
 
 A modern, responsive Pokémon browser built with React + TypeScript, featuring a feature-based architecture, code splitting, and comprehensive error handling. Explore Pokémon with two distinct viewing experiences and detailed individual pages.
 
+---
+
+## 🌐 Live Demo
+
+**🚀 [Experience the app live →](https://pokemon-browser-umber.vercel.app/pokemon)**
+
+Try out all the features:
+
+- 📄 **[Paginated View](https://pokemon-browser-umber.vercel.app/pokemon)** - Browse with traditional pagination controls
+- 📜 **[Load More View](https://pokemon-browser-umber.vercel.app/pokemon/scroll)** - Infinite scroll experience
+- 🔍 **[Pokémon Details](https://pokemon-browser-umber.vercel.app/pokemon/25)** - Rich detail pages (try Pikachu!)
+
+---
+
 ## 🎯 Features
 
 - **Dual List Views**: Browse Pokémon with pagination controls or load-more functionality
@@ -306,5 +320,3 @@ pnpm lint
 ---
 
 **Built with ❤️ using React, TypeScript, Vite, and TanStack Query**
-
-_This project demonstrates modern React development practices, thoughtful architecture decisions, and attention to user experience details._
