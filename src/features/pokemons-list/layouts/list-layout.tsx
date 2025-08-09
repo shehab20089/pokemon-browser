@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useMatches } from "react-router-dom";
 import type { UIMatch } from "react-router-dom";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { cn } from "@/lib/utils";
 import { Zap } from "lucide-react";
 
@@ -42,7 +42,7 @@ export default function ListLayout() {
             Page Controls
           </NavLink>
           <NavLink
-            to="scroll"
+            to="load-more"
             className={({ isActive }) =>
               cn(
                 buttonVariants({

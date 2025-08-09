@@ -7,7 +7,7 @@ import { useInfinitePokemonList } from "../hooks/useInfinitePokemonList";
 
 const PAGE_SIZE = 20;
 
-export default function PokemonScrollListPage() {
+export default function PokemonLoadMoreListPage() {
   const { query, items } = useInfinitePokemonList({ pageSize: PAGE_SIZE });
 
   if (query.isLoading) return <PokemonGridSkeleton count={PAGE_SIZE} />;
